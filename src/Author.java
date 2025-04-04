@@ -15,16 +15,21 @@ public class Author {
     public String getFamily() {
         return family;
     }
+    @Override
     public String toString(){
         return "Имя "+this.name+" Фамилия "+this.family;
     }
-    public boolean equals(Author other){
-        if (this.getName().equals(other.getName())&&this.getFamily().equals(other.getFamily())) {
+    @Override
+    public boolean equals(Object other){
+        if (this==other) {
             return true;
-        }else{
+        }if(other==null||getClass() != other.getClass()){
             return false;
         }
+        Author author = (Author) other;
+        return Objects.equals(name, author.name) && Objects.equals(family, author.family);
     }
+    @Override
     public int hashCode(){
         return Objects.hash(name,family);
     }
